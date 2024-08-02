@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+    background-image: linear-gradient(to bottom left, #171338 20%, #474280 50%, #24243e 100%);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+h1 {
+    padding: 1.5rem 0;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 42px #0ff,
+        0 0 82px #0ff,
+        0 0 20px #0ff,
+        0 0 10px #0ff,
+        0 0 13px #0ff;
+}
+
+.players-container {
+    padding: 1.5rem;
+    width: 90%;
+    display: flex;
+    margin: 1.5rem auto;
+    justify-content: space-between;
+    background-color: rgba(36, 36, 62, 0.2);
+    border-radius: 10px;
+}
+
+.players-container .player {
+    width: 40%;
+    text-align: center;
+    padding-top: 2.5rem;
+    border: 1px solid #474280;
+    border-radius: 10px;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.player .global-score {
+    font-size: 2rem;
+}
+
+.players-container h2,
+.players-container .global-score {
+    color: #fff0f0;
+}
+
+.players-container h2 {
+    font-weight: 500;
+    font-size: 1.9rem;
+    padding-bottom: 3rem;
+}
+
+
+.player .score-container {
+    width: 60%;
+    background-color: #fff;
+    color: #24243e;
+    margin: 7rem auto;
+    border-radius: 10px;
+
+}
+
+.players-container .score-container p {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+
+/* styling the buttons */
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: auto;
+    background-color: #f0eefc;
+    transition: all 0.5s;
+    color: #302b63;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.reset-btn:hover,
+.activ-reset-btn {
+    box-shadow: 1px 1px 10px 1px #0ff;
+    background-color: #474280;
+    color: #f0eefc;
+    cursor: pointer;
+}
+
+.game-setting-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    order: 2;
+}
+
+.reset-btn {
+    order: 1;
+
+}
+
+.roll-dice-btn {
+    order: 3;
+
+}
+
+.hold-btn {
+    order: 4;
+}
+
+img {
+    order: 2;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* utility classes */
+
+.winner-player {
+    background-image: url('./imgs/colorful-confetti-celebratory-design.png');
+    background-size: contain;
+    background-position: -50% 150%;
+    background-color: #474280;
+    box-shadow: 1px 1px 30px 3px #0ff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.winner-player .winner-text {
+    color: #0ff;
+    font-size: 2.5rem;
+    padding: 0;
+}
+
+.winner-player::after {
+    content: "";
+    width: 60px;
+    height: 60px;
+    background-image: url('./imgs/medal_14948390.png');
+    transform: rotate(-45deg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.active-player {
+    border-radius: 10px;
+    box-shadow: 1px 1px 30px 1px #0ff;
+
+}
+
+.activ-btn {
+    box-shadow: 1px 1px 10px 1px #0ff;
+    cursor: pointer;
+
+}
+
+.hide-dice {
+    display: none;
+}
+
+
+/* media querey responsive design */
+@media only screen and (max-width:768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .players-container {
+        padding: 1rem 0;
+        width: 100%;
+        margin: 1rem auto;
+        justify-content: space-around;
+    }
+
+    .players-container .player {
+        width: 35%;
+    }
+
+    .players-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .player .global-score {
+        font-size: 1.3rem;
+    }
+
+    .player .score-container {
+        width: 70%;
+        margin: 3rem auto;
+    }
+
+    .players-container .score-container p {
+        font-size: 1.1rem;
+        padding: 0.3rem 0;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        font-weight: 500;
+    }
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .winner-player .winner-text {
+        color: #0ff;
+        font-size: 1.5rem;
+        padding: 0;
+    }
+
+    .winner-player::after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        background-image: url('./imgs/medal_14948390.png');
+        transform: rotate(-45deg);
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .activ-btn {
+        box-shadow: 1px 1px 10px 0px #0ff;
+    }
+
+    .active-player {
+        box-shadow: 1px 1px 15px 1px #0ff;
+
+    }
+
+}
