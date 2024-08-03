@@ -10,6 +10,7 @@ Check out the live demo https://nesmasamir.github.io/dice-game/.
 ## Features
 - Roll the dice to generate a random number.
 - Reset game at any time
+- Swap turns when a player rolls a one.
 - Accumulate scores with each roll.
 - Simple and interactive UI.
 
