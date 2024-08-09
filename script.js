@@ -8,7 +8,7 @@ const currentScores = document.querySelectorAll(".current-score"); // list of th
 const diceImgEL = document.querySelector(".dice"); // the image of dice 
 const beginDiceImg = document.querySelector(".begin-dice")
 const rollDiceBtn = document.querySelector(".roll-dice-btn");
-const holdBtn = document.querySelector(".hold-btn");
+// const holdBtn = document.querySelector(".hold-btn");
 const resetBtn = document.querySelector(".reset-btn");
 const winnerUser = document.createElement("div");
 const celebratAudio = document.querySelector("audio");
@@ -16,6 +16,7 @@ winnerUser.textContent = "The Winner";
 
 // audio promise
 let playPromise;
+let timeoutSwapTurn;
 
 // variables using in the functionality
 let score = 0;
@@ -33,16 +34,43 @@ function changePlayer() {
 }
 
 
-function changeButtonsState(holdbtn, rollbtn, holdAttribute, rollAttribute) {
-    holdbtn == "activ" ? holdBtn.classList.add('activ-btn') : holdBtn.classList.remove('activ-btn');
+function changeRollBtnState(rollbtn, rollAttribute) {
     rollbtn == "activ" ? rollDiceBtn.classList.add('activ-btn') : rollDiceBtn.classList.remove('activ-btn');
-    holdAttribute == "remove" ? holdBtn.removeAttribute('disabled') : holdBtn.setAttribute("disabled", "true");
     rollAttribute == "remove" ? rollDiceBtn.removeAttribute('disabled') : rollDiceBtn.setAttribute("disabled", "true");
 }
 
 function toggleDiceImgState(isHiddenDice, isHiddendiceGif) {
     isHiddenDice ? diceImgEL.classList.add("hide-dice") : diceImgEL.classList.remove("hide-dice");
     isHiddendiceGif ? beginDiceImg.classList.add("hide-dice") : beginDiceImg.classList.remove("hide-dice")
+}
+
+function swapTurns() {
+    timeoutSwapTurn = setTimeout(() => {
+        toggleDiceImgState(true, false)
+        changeRollBtnState( "activ", "remove");
+        accumlatedScore[activePlayer] += score;
+        globalScore[activePlayer].textContent = accumlatedScore[activePlayer];
+
+        // check if the accumlated score is >+10 and get the winner and stopthe game
+        if (accumlatedScore[activePlayer] >= 10) {
+            playing = false;
+            winnerUser.classList.add("winner-text");
+            document.getElementById(`player-${activePlayer}`).classList.remove("active-player");
+            document.getElementById(`player-${activePlayer}`).classList.add("winner-player");
+            document.getElementById(`player-${activePlayer}`).insertAdjacentElement("afterbegin", winnerUser);
+            resetBtn.classList.add('activ-reset-btn');
+            changeRollBtnState( "inactiv", "add");
+            // celebratAudio.play();
+            playPromise = celebratAudio.play();
+            currentScores[activePlayer].textContent = 0;
+        }
+
+        // check if score less than 10 so continuo playing
+        else {
+            changePlayer();
+        }
+    }, 1000);
+
 }
 
 // rolling dice 
@@ -59,59 +87,25 @@ rollDiceBtn.addEventListener('click', function () {
         if (dice !== 1) {
             score += dice;
             currentScores[activePlayer].textContent = score;
-            changeButtonsState("activ", "inactiv", "remove", "add");
+            changeRollBtnState( "inactiv", "add");
+            swapTurns()
         }
 
         //4. if dice ===1 set the current player score  to zero and  swap to the second player
         else {
-            setTimeout(() => {
-                changeButtonsState("inactiv", "activ", "", "remove")
-                changePlayer();
-                toggleDiceImgState(true, false)
 
-            }, 1000);
-
-            changeButtonsState("inactiv", "inactiv", "add", "add")
+            swapTurns()
+            changeRollBtnState( "inactiv", "add")
         }
+
     }
 })
-
-
-// hold the dice and store current score in the global score, check the winner
-holdBtn.addEventListener('click', function () {
-    if (playing) {
-        toggleDiceImgState(true, false)
-        changeButtonsState("inactiv", "activ", "add", "remove");
-        accumlatedScore[activePlayer] += score;
-        globalScore[activePlayer].textContent = accumlatedScore[activePlayer];
-
-        // check if the accumlated score is >+10 and get the winner and stopthe game
-        if (accumlatedScore[activePlayer] >= 20) {
-            playing = false;
-            winnerUser.classList.add("winner-text");
-            document.getElementById(`player-${activePlayer}`).classList.remove("active-player");
-            document.getElementById(`player-${activePlayer}`).classList.add("winner-player");
-            document.getElementById(`player-${activePlayer}`).insertAdjacentElement("afterbegin", winnerUser);
-            resetBtn.classList.add('activ-reset-btn');
-            changeButtonsState("inactiv", "inactiv", "add", "add");
-            celebratAudio.play();
-            playPromise = celebratAudio.play();
-            currentScores[activePlayer].textContent = 0;
-        }
-
-        // check if score less than 10 so continuo playing
-        else {
-            changePlayer();
-        }
-    }
-})
-
 
 
 
 // reset button 
 resetBtn.addEventListener("click", function () {
-
+    clearTimeout(timeoutSwapTurn);
     celebratAudio.currentTime = 0;
     if (playPromise !== undefined) {
         playPromise.then(() => {
@@ -119,11 +113,10 @@ resetBtn.addEventListener("click", function () {
             playPromise = undefined;
         })
     }
-
     resetBtn.classList.remove('activ-reset-btn');
     winnerUser.remove();
     // reset buttons
-    changeButtonsState("inactiv", "activ", "add", "remove")
+    changeRollBtnState( "activ", "remove")
 
     //1.rest the dice imgs
     toggleDiceImgState(true, false)
