@@ -22,10 +22,9 @@ Check out the live demo https://nesmasamir.github.io/dice-game/.
 ## How to Play
 1. Open the game in your browser.
 2. Click the "Roll Dice" button.
-3. click "hold" button
-4. A random number will appear, and the score will update accordingly.
-5. Continue rolling the dice to accumulate your score.
-6. you can reset game using reset button
+3. A random number will appear, and the score will update accordingly.
+4. Continue rolling the dice to accumulate your score.
+5. you can reset game using reset button
 
 ## Setup
 1. Clone the repository: `git clone <repository-url>`
