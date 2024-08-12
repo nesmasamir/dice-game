@@ -163,7 +163,7 @@ h1 {
 }
 
 .play-btn {
-    padding: 10px 25px;
+    padding: 15px 30px;
     margin: 1.1rem 0;
 }
 
@@ -251,16 +251,21 @@ img {
 }
 
 .blur {
-    filter: blur(3px);
+    filter: blur(4px);
 }
 
 .warning-message {
     color: rgb(255, 54, 54);
-    font-size: 0.8rem;
 }
 
 /* media querey, responsive design */
 @media only screen and (max-width:768px) {
+    .dialog-box input{
+        font-size: 20px;
+        width: 40%;
+        height: 50px;
+    }
+
     h1 {
         font-size: 2rem;
     }
@@ -297,6 +302,10 @@ img {
     .btn {
         padding: 5px 10px;
         font-weight: 500;
+    }
+    .play-btn{
+        padding: 8px 30px;
+
     }
 
     img {
