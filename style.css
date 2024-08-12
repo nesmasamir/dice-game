@@ -9,14 +9,68 @@ body {
     position: relative;
 }
 
+.dialog-box {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+    transform: scale(1);
+    transition: all 0.5s;
+
+}
+
+.dialog-box p {
+    color: #fff0f0;
+    font-size: 1.2rem;
+}
+
+.dialog-box input {
+    margin: 1.5rem 0 0.5rem;
+    border: none;
+    border-radius: 10px;
+    width: 20%;
+    height: 60px;
+    text-indent: 10px;
+    color: #171338;
+    font-size: 24px;
+    text-align: center;
+}
+
 .main-container {
     background-image: linear-gradient(to bottom left, #171338 20%, #474280 50%, #24243e 100%);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
+
+
+.main-container .wining-score {
+    color: #f0eefc;
+
+    padding: 15px 0;
+    text-shadow:
+    0 0 7px #fff,
+    0 0 42px #0ff,
+    0 0 82px #0ff,
+    0 0 10px #0ff;
+   
+}
+.main-container .score-val{
+    color: #f0eefc;
+    display: block;
+    text-align: center;
+   
+  
+} 
+
 
 h1 {
     padding: 1.5rem 0;
@@ -34,6 +88,7 @@ h1 {
 }
 
 .players-container {
+
     padding: 1.5rem;
     width: 90%;
     display: flex;
@@ -99,11 +154,17 @@ h1 {
 }
 
 .reset-btn:hover,
+.play-btn:hover,
 .activ-reset-btn {
     box-shadow: 1px 1px 10px 1px #0ff;
     background-color: #474280;
     color: #f0eefc;
     cursor: pointer;
+}
+
+.play-btn {
+    padding: 10px 25px;
+    margin: 1.1rem 0;
 }
 
 .game-setting-container {
@@ -185,8 +246,20 @@ img {
     display: none;
 }
 
+.smooth-hide {
+    transform: scale(0);
+}
 
-/* media querey responsive design */
+.blur {
+    filter: blur(3px);
+}
+
+.warning-message {
+    color: rgb(255, 54, 54);
+    font-size: 0.8rem;
+}
+
+/* media querey, responsive design */
 @media only screen and (max-width:768px) {
     h1 {
         font-size: 2rem;

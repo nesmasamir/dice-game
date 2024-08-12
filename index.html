@@ -9,11 +9,17 @@
 </head>
 
 <body>
-    <div class="main-container">
+    <div class="dialog-box ">
+        <p>Set Wininig Score</p>
+        <input type="text">
+        <span class="warning-message"></span>
+        <button class="play-btn btn"> Play</button>
+    </div>
+    <div class="main-container blur">
         <h1>Dice Game</h1>
         <div class="players-container">
 
-            <div style="order:1" id="player-0" class="player active-player">
+            <div style="order:1" id="player-0" class="player ">
                 <h2>player 1</h2>
                 <p class="global-score">0</p>
                 <div class="score-container">
@@ -32,11 +38,14 @@
             </div>
 
             <div style="order:2" class="game-setting-container">
-
+                <div>
+                    <p class="wining-score">Wining Score</p>
+                    <span class="score-val"></span>
+                </div>
                 <img class=" begin-dice" src="imgs/dice-roll-dice.gif" alt="playing dice">
                 <img class="dice hide-dice" src="imgs/dice-1.png" alt="playing dice">
                 <button class="btn reset-btn"> New Game</button>
-                <button class=" btn roll-dice-btn activ-btn"> ROLL DICE</button>
+                <button class=" btn roll-dice-btn "> ROLL DICE</button>
             </div>
             <audio preload="none" src="audio/mixkit-girls-audience-applause-510.wav">
             </audio>
