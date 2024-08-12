@@ -54,22 +54,24 @@ body {
 
 .main-container .wining-score {
     color: #f0eefc;
-
+    /* font-size: 18px; */
     padding: 15px 0;
     text-shadow:
-    0 0 7px #fff,
-    0 0 42px #0ff,
-    0 0 82px #0ff,
-    0 0 10px #0ff;
-   
+        0 0 7px #fff,
+        0 0 42px #0ff,
+        0 0 82px #0ff,
+        0 0 10px #0ff;
+
 }
-.main-container .score-val{
+
+.main-container .score-val {
     color: #f0eefc;
     display: block;
     text-align: center;
-   
-  
-} 
+    font-size: 18px;
+
+
+}
 
 
 h1 {
@@ -260,7 +262,7 @@ img {
 
 /* media querey, responsive design */
 @media only screen and (max-width:768px) {
-    .dialog-box input{
+    .dialog-box input {
         font-size: 20px;
         width: 40%;
         height: 50px;
@@ -300,10 +302,11 @@ img {
     }
 
     .btn {
-        padding: 5px 10px;
+        padding: 10px 10px;
         font-weight: 500;
     }
-    .play-btn{
+
+    .play-btn {
         padding: 8px 30px;
 
     }
